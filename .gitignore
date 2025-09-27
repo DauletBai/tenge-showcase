@@ -1,0 +1,22 @@
+# Binaries
+*.o
+*.out
+*.exe
+*.dll
+*.so
+*.a
+
+# Python venv
+.venv/
+__pycache__/
+
+# Logs
+*.log
+
+# Generated data
+benchmarks/*.csv
+plots/*.png
+plots/*.svg
+
+# macOS junk
+.DS_Store

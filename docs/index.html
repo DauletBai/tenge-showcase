@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tenge Showcase Benchmarks</title>
+<link rel="icon" href="plots/tenge_benchmark.svg">
+<style>
+  :root { --bg:#ffffff; --card:#ffffff; --ink:#e9eef5; --muted:#666666; --accent:#3e9ed6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif; background:var(--bg); color:var(--ink); }
+  header { padding:28px 18px 6px; text-align:center; }
+  header h1 { margin:0; font-size:32px; letter-spacing:.5px; color:var(--muted); }
+  header p.sub { margin:6px 0 0; color:var(--muted); }
+  header .meta { margin-top:8px; font-size:13px; color:var(--muted); }
+  .links a { color:var(--accent); text-decoration:none; margin:0 8px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(420px,1fr)); gap:18px; padding:18px; max-width:1440px; margin:0 auto; }
+  figure { background:var(--card); border-radius:14px; padding:12px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  figure img { width:100%; height:auto; border-radius:10px; display:block; }
+  figure figcaption { margin-top:10px; font-size:14px; color:var(--muted); display:flex; justify-content:space-between; align-items:center; }
+  .foot { text-align:center; color:var(--muted); padding:18px; font-size:12px; }
+  .badge { background:#ffffff; padding:2px 8px; border-radius:999px; font-size:12px; color:#008efc; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Tenge Showcase Benchmarks</h1>
+  <p class="sub">Profile=strict, REPS=5, WARMUP=2, INNER_REPS=0</p>
+  <div class="meta">
+    Generated: <span class="badge">2025-09-27 10:51:03</span>
+    <span class="links">
+      · <a href="https://github.com/DauletBai/tenge" target="_blank" rel="noopener">tenge repo</a>
+      · <a href="https://github.com/DauletBai/tenge-showcase" target="_blank" rel="noopener">showcase repo</a>
+    </span>
+  </div>
+</header>
+<main class="grid">
+<figure>
+  <a href="plots/c(-)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/c(-)_benchmark.png" alt="c(-)_benchmark">
+  </a>
+  <figcaption>
+    <span>c(-)</span>
+    <a href="plots/c(-)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/c_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/c_benchmark.png" alt="c_benchmark">
+  </a>
+  <figcaption>
+    <span>c</span>
+    <a href="plots/c_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/fib_iter_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/fib_iter_benchmark.png" alt="fib_iter_benchmark">
+  </a>
+  <figcaption>
+    <span>fib iter</span>
+    <a href="plots/fib_iter_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/fib_rec_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/fib_rec_benchmark.png" alt="fib_rec_benchmark">
+  </a>
+  <figcaption>
+    <span>fib rec</span>
+    <a href="plots/fib_rec_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/go(-)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/go(-)_benchmark.png" alt="go(-)_benchmark">
+  </a>
+  <figcaption>
+    <span>go(-)</span>
+    <a href="plots/go(-)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/go_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/go_benchmark.png" alt="go_benchmark">
+  </a>
+  <figcaption>
+    <span>go</span>
+    <a href="plots/go_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/nbody_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/nbody_benchmark.png" alt="nbody_benchmark">
+  </a>
+  <figcaption>
+    <span>nbody</span>
+    <a href="plots/nbody_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/nbody_sym_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/nbody_sym_benchmark.png" alt="nbody_sym_benchmark">
+  </a>
+  <figcaption>
+    <span>nbody sym</span>
+    <a href="plots/nbody_sym_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/rust(-)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/rust(-)_benchmark.png" alt="rust(-)_benchmark">
+  </a>
+  <figcaption>
+    <span>rust(-)</span>
+    <a href="plots/rust(-)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/rust_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/rust_benchmark.png" alt="rust_benchmark">
+  </a>
+  <figcaption>
+    <span>rust</span>
+    <a href="plots/rust_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/sort_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/sort_benchmark.png" alt="sort_benchmark">
+  </a>
+  <figcaption>
+    <span>sort</span>
+    <a href="plots/sort_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/tenge(pdq)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/tenge(pdq)_benchmark.png" alt="tenge(pdq)_benchmark">
+  </a>
+  <figcaption>
+    <span>tenge(pdq)</span>
+    <a href="plots/tenge(pdq)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/tenge(qsel)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/tenge(qsel)_benchmark.png" alt="tenge(qsel)_benchmark">
+  </a>
+  <figcaption>
+    <span>tenge(qsel)</span>
+    <a href="plots/tenge(qsel)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/tenge(radix)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/tenge(radix)_benchmark.png" alt="tenge(radix)_benchmark">
+  </a>
+  <figcaption>
+    <span>tenge(radix)</span>
+    <a href="plots/tenge(radix)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/tenge(zig)_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/tenge(zig)_benchmark.png" alt="tenge(zig)_benchmark">
+  </a>
+  <figcaption>
+    <span>tenge(zig)</span>
+    <a href="plots/tenge(zig)_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/tenge_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/tenge_benchmark.png" alt="tenge_benchmark">
+  </a>
+  <figcaption>
+    <span>tenge</span>
+    <a href="plots/tenge_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+<figure>
+  <a href="plots/var_mc_benchmark.svg" target="_blank" rel="noopener">
+    <img src="plots/var_mc_benchmark.png" alt="var_mc_benchmark">
+  </a>
+  <figcaption>
+    <span>var mc</span>
+    <a href="plots/var_mc_benchmark.svg" class="badge" target="_blank" rel="noopener">SVG</a>
+  </figcaption>
+</figure>
+</main>
+<div class="foot">Open-source benchmarks. Lower is better (ns). © 2025</div>
+</body>
+</html>
