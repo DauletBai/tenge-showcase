@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Tenge Showcase — CRUD HTTP Demo</title><meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>:root{color-scheme:light dark}body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";margin:2rem;line-height:1.5}code,kbd{background:rgba(127,127,127,.12);padding:.2rem .35rem;border-radius:.35rem}pre{background:rgba(127,127,127,.12);padding:1rem;border-radius:.5rem;overflow:auto}.pill{display:inline-block;padding:.2rem .6rem;border:1px solid rgba(127,127,127,.35);border-radius:999px;font-size:.85rem;margin-right:.35rem}.muted{opacity:.7}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}.card{border:1px solid rgba(127,127,127,.25);border-radius:.75rem;padding:1rem}a.button{display:inline-block;padding:.5rem .9rem;border:1px solid rgba(127,127,127,.35);border-radius:.6rem;text-decoration:none}</style></head>
+<body>
+<h1>CRUD HTTP Demo (C + SQLite)</h1>
+<p class="muted">Minimal REST API running alongside the Tenge project to demonstrate web/DB integration and performance-friendly design.</p>
+<div class="grid" style="margin:1rem 0 2rem">
+  <div class="card"><div class="pill">GET</div> <code>/todos</code><p class="muted">List todos.</p></div>
+  <div class="card"><div class="pill">POST</div> <code>/todos</code><p class="muted">Create todo: <code>{"title":"...","priority":1}</code></p></div>
+  <div class="card"><div class="pill">GET</div> <code>/todos/{{id}}</code><p class="muted">Get one by id.</p></div>
+  <div class="card"><div class="pill">PATCH</div> <code>/todos/{{id}}</code><p class="muted">Update fields: <code>{"done":true}</code></p></div>
+  <div class="card"><div class="pill">DELETE</div> <code>/todos/{{id}}</code><p class="muted">Delete by id.</p></div>
+</div>
+<h2>How to run locally</h2>
+<ol><li>Run server (from <code>../tenge</code>):
+<pre>make -C ../tenge examples/crud_todos http-run
+# server listens on http://127.0.0.1:8080</pre></li>
+<li>Smoke test:
+<pre>./scripts/crud_smoketest.sh   # requires curl &amp; jq</pre></li></ol>
+<h2>curl snippets</h2>
+<pre># list
+curl -s http://127.0.0.1:8080/todos | jq .
+
+# create
+curl -s -X POST http://127.0.0.1:8080/todos \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Write blog post","priority":2}' | jq .
+
+# get
+curl -s http://127.0.0.1:8080/todos/1 | jq .
+
+# patch
+curl -s -X PATCH http://127.0.0.1:8080/todos/1 \
+  -H "Content-Type: application/json" \
+  -d '{"done":true}' | jq .
+
+# delete
+curl -s -X DELETE http://127.0.0.1:8080/todos/1 | jq .</pre>
+<p class="muted">SQLite: <code>../tenge/examples/crud_todos/todos.db</code>. Recreate table: <code>make -C ../tenge examples/crud_todos purge</code>.</p>
+<p><a class="button" href="./index.html">← Back to Benchmarks</a></p>
+</body></html>
