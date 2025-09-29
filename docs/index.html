@@ -3,110 +3,147 @@
 <head>
   <meta charset="utf-8">
   <title>Tenge Showcase — Benchmarks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root { color-scheme: light dark; }
-    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; margin: 2rem; line-height: 1.5; }
-    header { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
-    .pill{display:inline-block;padding:.2rem .6rem;border:1px solid rgba(127,127,127,.35);border-radius:999px;font-size:.85rem;margin-right:.35rem}
-    .muted{opacity:.7}
-    .small{font-size:.85rem}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem}
-    .card{border:1px solid rgba(127,127,127,.25);border-radius:.75rem;padding:1rem}
-    a.button{display:inline-block;padding:.5rem .9rem;border:1px solid rgba(127,127,127,.35);border-radius:.6rem;text-decoration:none}
+    /* Minimal, clean, responsive gallery */
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#0b1220; color:#e8eefc; }
+    header { padding: 24px 16px; border-bottom:1px solid #1b2a4a; background: #0f1830; position: sticky; top: 0; z-index: 10; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: .3px; }
+    p.lead { margin: 0; opacity:.8; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 18px; }
+    .card { display: block; background: #0e1730; border:1px solid #23355b; border-radius: 12px; text-decoration: none; color: inherit; overflow: hidden; transition: transform .08s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-2px); border-color:#3c5fa1; }
+    .card img { width:100%; height:180px; object-fit: cover; display:block; background:#091126; }
+    .card-title { padding: 12px 14px; font-weight: 600; font-size: 14px; }
+    footer { text-align:center; opacity:.6; padding: 24px 0 40px; }
+    .links a { color:#9ec2ff; }
   </style>
 </head>
 <body>
   <header>
-    <h1 style="margin:0">Tenge Showcase</h1>
-    <span class="pill">benchmarks</span>
-    <span class="pill">visuals</span>
-    <span class="pill">demo</span>
+    <div class="wrap">
+      <h1>Tenge Showcase — Benchmarks</h1>
+      <p class="lead">Auto-generated index of plots. Updated: 2025-09-29 04:06 UTC</p>
+      <div class="links" style="margin-top:8px">
+        <a href="./crud_demo.html">CRUD demo</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/DauletBai/tenge">Tenge repo</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/DauletBai/tenge-showcase">Showcase repo</a>
+      </div>
+    </div>
   </header>
 
-  <p class="muted">Updated: 2025-09-28 09:55</p>
+  <main class="wrap">
+    <div class="grid">
 
-  <div class="grid">
-    <div class="card">
-          <h3>c(-) benchmark</h3>
-          <div class="muted small">Download: <a href="./c(-)_benchmark.png" download>PNG</a> · <a href="./c(-)_benchmark.svg" download>SVG</a></div>
-          <img src="./c(-)_benchmark.png" alt="c(-) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>c benchmark</h3>
-          <div class="muted small">Download: <a href="./c_benchmark.png" download>PNG</a> · <a href="./c_benchmark.svg" download>SVG</a></div>
-          <img src="./c_benchmark.png" alt="c benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>fib iter benchmark</h3>
-          <div class="muted small">Download: <a href="./fib_iter_benchmark.png" download>PNG</a> · <a href="./fib_iter_benchmark.svg" download>SVG</a></div>
-          <img src="./fib_iter_benchmark.png" alt="fib iter benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>fib rec benchmark</h3>
-          <div class="muted small">Download: <a href="./fib_rec_benchmark.png" download>PNG</a> · <a href="./fib_rec_benchmark.svg" download>SVG</a></div>
-          <img src="./fib_rec_benchmark.png" alt="fib rec benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>go(-) benchmark</h3>
-          <div class="muted small">Download: <a href="./go(-)_benchmark.png" download>PNG</a> · <a href="./go(-)_benchmark.svg" download>SVG</a></div>
-          <img src="./go(-)_benchmark.png" alt="go(-) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>go benchmark</h3>
-          <div class="muted small">Download: <a href="./go_benchmark.png" download>PNG</a> · <a href="./go_benchmark.svg" download>SVG</a></div>
-          <img src="./go_benchmark.png" alt="go benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>nbody benchmark</h3>
-          <div class="muted small">Download: <a href="./nbody_benchmark.png" download>PNG</a> · <a href="./nbody_benchmark.svg" download>SVG</a></div>
-          <img src="./nbody_benchmark.png" alt="nbody benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>nbody sym benchmark</h3>
-          <div class="muted small">Download: <a href="./nbody_sym_benchmark.png" download>PNG</a> · <a href="./nbody_sym_benchmark.svg" download>SVG</a></div>
-          <img src="./nbody_sym_benchmark.png" alt="nbody sym benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>rust(-) benchmark</h3>
-          <div class="muted small">Download: <a href="./rust(-)_benchmark.png" download>PNG</a> · <a href="./rust(-)_benchmark.svg" download>SVG</a></div>
-          <img src="./rust(-)_benchmark.png" alt="rust(-) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>rust benchmark</h3>
-          <div class="muted small">Download: <a href="./rust_benchmark.png" download>PNG</a> · <a href="./rust_benchmark.svg" download>SVG</a></div>
-          <img src="./rust_benchmark.png" alt="rust benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>sort benchmark</h3>
-          <div class="muted small">Download: <a href="./sort_benchmark.png" download>PNG</a> · <a href="./sort_benchmark.svg" download>SVG</a></div>
-          <img src="./sort_benchmark.png" alt="sort benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>tenge(pdq) benchmark</h3>
-          <div class="muted small">Download: <a href="./tenge(pdq)_benchmark.png" download>PNG</a> · <a href="./tenge(pdq)_benchmark.svg" download>SVG</a></div>
-          <img src="./tenge(pdq)_benchmark.png" alt="tenge(pdq) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>tenge(qsel) benchmark</h3>
-          <div class="muted small">Download: <a href="./tenge(qsel)_benchmark.png" download>PNG</a> · <a href="./tenge(qsel)_benchmark.svg" download>SVG</a></div>
-          <img src="./tenge(qsel)_benchmark.png" alt="tenge(qsel) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>tenge(radix) benchmark</h3>
-          <div class="muted small">Download: <a href="./tenge(radix)_benchmark.png" download>PNG</a> · <a href="./tenge(radix)_benchmark.svg" download>SVG</a></div>
-          <img src="./tenge(radix)_benchmark.png" alt="tenge(radix) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>tenge(zig) benchmark</h3>
-          <div class="muted small">Download: <a href="./tenge(zig)_benchmark.png" download>PNG</a> · <a href="./tenge(zig)_benchmark.svg" download>SVG</a></div>
-          <img src="./tenge(zig)_benchmark.png" alt="tenge(zig) benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>tenge benchmark</h3>
-          <div class="muted small">Download: <a href="./tenge_benchmark.png" download>PNG</a> · <a href="./tenge_benchmark.svg" download>SVG</a></div>
-          <img src="./tenge_benchmark.png" alt="tenge benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>var mc benchmark</h3>
-          <div class="muted small">Download: <a href="./var_mc_benchmark.png" download>PNG</a> · <a href="./var_mc_benchmark.svg" download>SVG</a></div>
-          <img src="./var_mc_benchmark.png" alt="var mc benchmark" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div><div class="card">
-          <h3>CRUD HTTP demo</h3>
-          <p class="muted">C + SQLite HTTP API (todos)</p>
-          <a class="button" href="./crud_demo.html">Open demo page</a>
-        </div>
-  </div>
+      <a class="card" href="plots/c(-)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/c(-)_benchmark.png" alt="c(-)_benchmark">
+        <div class="card-title">c(-)</div>
+      </a>
+    
 
-  <hr style="margin:2rem 0"/>
+      <a class="card" href="plots/c_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/c_benchmark.png" alt="c_benchmark">
+        <div class="card-title">c</div>
+      </a>
+    
 
-  <p class="muted small">
-    GitHub: <a href="https://github.com/DauletBai/tenge" target="_blank" rel="noopener">DauletBai/tenge</a> ·
-    Showcase: <a href="https://github.com/DauletBai/tenge-showcase" target="_blank" rel="noopener">tenge-showcase</a>
-  </p>
+      <a class="card" href="plots/fib_iter_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/fib_iter_benchmark.png" alt="fib_iter_benchmark">
+        <div class="card-title">fib iter</div>
+      </a>
+    
+
+      <a class="card" href="plots/fib_rec_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/fib_rec_benchmark.png" alt="fib_rec_benchmark">
+        <div class="card-title">fib rec</div>
+      </a>
+    
+
+      <a class="card" href="plots/go(-)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/go(-)_benchmark.png" alt="go(-)_benchmark">
+        <div class="card-title">go(-)</div>
+      </a>
+    
+
+      <a class="card" href="plots/go_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/go_benchmark.png" alt="go_benchmark">
+        <div class="card-title">go</div>
+      </a>
+    
+
+      <a class="card" href="plots/nbody_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/nbody_benchmark.png" alt="nbody_benchmark">
+        <div class="card-title">nbody</div>
+      </a>
+    
+
+      <a class="card" href="plots/nbody_sym_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/nbody_sym_benchmark.png" alt="nbody_sym_benchmark">
+        <div class="card-title">nbody sym</div>
+      </a>
+    
+
+      <a class="card" href="plots/rust(-)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/rust(-)_benchmark.png" alt="rust(-)_benchmark">
+        <div class="card-title">rust(-)</div>
+      </a>
+    
+
+      <a class="card" href="plots/rust_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/rust_benchmark.png" alt="rust_benchmark">
+        <div class="card-title">rust</div>
+      </a>
+    
+
+      <a class="card" href="plots/sort_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/sort_benchmark.png" alt="sort_benchmark">
+        <div class="card-title">sort</div>
+      </a>
+    
+
+      <a class="card" href="plots/tenge(pdq)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/tenge(pdq)_benchmark.png" alt="tenge(pdq)_benchmark">
+        <div class="card-title">tenge(pdq)</div>
+      </a>
+    
+
+      <a class="card" href="plots/tenge(qsel)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/tenge(qsel)_benchmark.png" alt="tenge(qsel)_benchmark">
+        <div class="card-title">tenge(qsel)</div>
+      </a>
+    
+
+      <a class="card" href="plots/tenge(radix)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/tenge(radix)_benchmark.png" alt="tenge(radix)_benchmark">
+        <div class="card-title">tenge(radix)</div>
+      </a>
+    
+
+      <a class="card" href="plots/tenge(zig)_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/tenge(zig)_benchmark.png" alt="tenge(zig)_benchmark">
+        <div class="card-title">tenge(zig)</div>
+      </a>
+    
+
+      <a class="card" href="plots/tenge_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/tenge_benchmark.png" alt="tenge_benchmark">
+        <div class="card-title">tenge</div>
+      </a>
+    
+
+      <a class="card" href="plots/var_mc_benchmark.svg" target="_blank" rel="noopener">
+        <img src="plots/var_mc_benchmark.png" alt="var_mc_benchmark">
+        <div class="card-title">var mc</div>
+      </a>
+    
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© Tenge Project — Benchmarks gallery</div>
+  </footer>
 </body>
 </html>
