@@ -1,107 +1,105 @@
 #!/usr/bin/env python3
-import argparse
+"""
+Generate docs/index.html from images in docs/plots/.
+All comments in English for documentation purposes only.
+"""
+
 import os
 from pathlib import Path
 from datetime import datetime
 from html import escape
 
-def discover_plots(plots_dir: Path):
-    items = []
-    for p in sorted(plots_dir.glob("*.png")):
-        stem = p.stem
-        svg = plots_dir / f"{stem}.svg"
-        items.append({
-            "title": stem.replace("_", " "),
-            "png": p.name,
-            "svg": svg.name if svg.exists() else None,
-        })
-    return items
+ROOT = Path(__file__).resolve().parent.parent
+DOCS = ROOT / "docs"
+PLOTS_DIR = DOCS / "plots"   # images are copied here on publish
 
-def write_index(out_path: Path, plots, has_crud_card: bool):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
-    cards_html = []
+def collect_series():
+    # Return list of (basename, png_path_rel, svg_path_rel)
+    out = []
+    if not PLOTS_DIR.exists():
+        return out
+    pngs = {p.stem: p for p in PLOTS_DIR.glob("*.png")}
+    svgs = {p.stem: p for p in PLOTS_DIR.glob("*.svg")}
+    names = sorted(set(pngs.keys()) | set(svgs.keys()))
+    for name in names:
+        png_rel = f"plots/{name}.png" if (PLOTS_DIR / f"{name}.png").exists() else ""
+        svg_rel = f"plots/{name}.svg" if (PLOTS_DIR / f"{name}.svg").exists() else ""
+        out.append((name, png_rel, svg_rel))
+    return out
 
-    # Plot cards
-    for it in plots:
-        title = escape(it["title"])
-        png = escape(it["png"])
-        svg = it["svg"]
-        svg_link = f' · <a href="./{escape(svg)}" download>SVG</a>' if svg else ""
-        cards_html.append(f"""
-        <div class="card">
-          <h3>{title}</h3>
-          <div class="muted small">Download: <a href="./{png}" download>PNG</a>{svg_link}</div>
-          <img src="./{png}" alt="{title}" style="width:100%;height:auto;border-radius:.5rem;margin-top:.5rem"/>
-        </div>
-        """.strip())
+def card_html(name, png_rel, svg_rel):
+    title = escape(name.replace("_benchmark", "").replace("_", " "))
+    img = escape(png_rel or svg_rel or "")
+    link = escape(svg_rel or png_rel or "")
+    if not img:
+        return ""
+    return f"""
+      <a class="card" href="{link}" target="_blank" rel="noopener">
+        <img src="{img}" alt="{escape(name)}">
+        <div class="card-title">{title}</div>
+      </a>
+    """
 
-    # CRUD card
-    if has_crud_card:
-        cards_html.append("""
-        <div class="card">
-          <h3>CRUD HTTP demo</h3>
-          <p class="muted">C + SQLite HTTP API (todos)</p>
-          <a class="button" href="./crud_demo.html">Open demo page</a>
-        </div>
-        """.strip())
-
-    html = f"""<!doctype html>
+def build_index(cards):
+    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    cards_html = "\n".join(cards)
+    return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Tenge Showcase — Benchmarks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {{ color-scheme: light dark; }}
-    body {{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; margin: 2rem; line-height: 1.5; }}
-    header {{ display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }}
-    .pill{{display:inline-block;padding:.2rem .6rem;border:1px solid rgba(127,127,127,.35);border-radius:999px;font-size:.85rem;margin-right:.35rem}}
-    .muted{{opacity:.7}}
-    .small{{font-size:.85rem}}
-    .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem}}
-    .card{{border:1px solid rgba(127,127,127,.25);border-radius:.75rem;padding:1rem}}
-    a.button{{display:inline-block;padding:.5rem .9rem;border:1px solid rgba(127,127,127,.35);border-radius:.6rem;text-decoration:none}}
+    /* Minimal, clean, responsive gallery */
+    body {{ margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#0b1220; color:#e8eefc; }}
+    header {{ padding: 24px 16px; border-bottom:1px solid #1b2a4a; background: #0f1830; position: sticky; top: 0; z-index: 10; }}
+    .wrap {{ max-width: 1100px; margin: 0 auto; padding: 16px; }}
+    h1 {{ margin: 0 0 8px; font-size: 28px; letter-spacing: .3px; }}
+    p.lead {{ margin: 0; opacity:.8; }}
+    .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 18px; }}
+    .card {{ display: block; background: #0e1730; border:1px solid #23355b; border-radius: 12px; text-decoration: none; color: inherit; overflow: hidden; transition: transform .08s ease, border-color .2s ease; }}
+    .card:hover {{ transform: translateY(-2px); border-color:#3c5fa1; }}
+    .card img {{ width:100%; height:180px; object-fit: cover; display:block; background:#091126; }}
+    .card-title {{ padding: 12px 14px; font-weight: 600; font-size: 14px; }}
+    footer {{ text-align:center; opacity:.6; padding: 24px 0 40px; }}
+    .links a {{ color:#9ec2ff; }}
   </style>
 </head>
 <body>
   <header>
-    <h1 style="margin:0">Tenge Showcase</h1>
-    <span class="pill">benchmarks</span>
-    <span class="pill">visuals</span>
-    <span class="pill">demo</span>
+    <div class="wrap">
+      <h1>Tenge Showcase — Benchmarks</h1>
+      <p class="lead">Auto-generated index of plots. Updated: {escape(now)}</p>
+      <div class="links" style="margin-top:8px">
+        <a href="./crud_demo.html">CRUD demo</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/DauletBai/tenge">Tenge repo</a>
+        &nbsp;•&nbsp;
+        <a href="https://github.com/DauletBai/tenge-showcase">Showcase repo</a>
+      </div>
+    </div>
   </header>
 
-  <p class="muted">Updated: {escape(now)}</p>
+  <main class="wrap">
+    <div class="grid">
+{cards_html}
+    </div>
+  </main>
 
-  <div class="grid">
-    {"".join(cards_html)}
-  </div>
-
-  <hr style="margin:2rem 0"/>
-
-  <p class="muted small">
-    GitHub: <a href="https://github.com/DauletBai/tenge" target="_blank" rel="noopener">DauletBai/tenge</a> ·
-    Showcase: <a href="https://github.com/DauletBai/tenge-showcase" target="_blank" rel="noopener">tenge-showcase</a>
-  </p>
+  <footer>
+    <div class="wrap">© Tenge Project — Benchmarks gallery</div>
+  </footer>
 </body>
 </html>
 """
-    out_path.write_text(html, encoding="utf-8")
-    print(f"[make_index] wrote {out_path} with {len(plots) + (1 if has_crud_card else 0)} cards")
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--results", required=False, default="benchmarks")
-    ap.add_argument("--out", required=False, default="docs")
-    args = ap.parse_args()
-
-    plots_dir = Path("plots")
-    out_dir = Path(args.out)
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    plots = discover_plots(plots_dir)
-    has_crud_card = Path(out_dir / "crud_demo.html").exists() or Path("docs/crud_demo.html").exists()
-    write_index(out_dir / "index.html", plots, has_crud_card)
+    series = collect_series()
+    cards = [card_html(n, p, s) for (n, p, s) in series if (p or s)]
+    html = build_index(cards)
+    DOCS.mkdir(parents=True, exist_ok=True)
+    (DOCS / "index.html").write_text(html, encoding="utf-8")
+    print(f"[make_index] wrote {DOCS/'index.html'} with {len(cards)} cards")
 
 if __name__ == "__main__":
     main()
